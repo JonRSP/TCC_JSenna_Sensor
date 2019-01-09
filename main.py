@@ -9,7 +9,7 @@ try:
 	f = open('sensor.db')
 except FileNotFoundError:
 	startDB.startDB()
-
+f.close()
 # Define o tipo de sensor
 sensor = Adafruit_DHT.DHT11
 #sensor = Adafruit_DHT.DHT22
@@ -47,8 +47,8 @@ while(1):
 				id = int(r.text)
 				conn = sqlite3.connect('sensor.db')
 				cursor = conn.cursor()
-				sqlCommand = 'UPDATE sensor SET senid = '+str(id)+ 'where senid=0;'
-				cursor.excute(sqlCommand)
+				sqlCommand = 'UPDATE sensor SET senid = '+str(id)+ ' where senid=0;'
+				cursor.execute(sqlCommand)
 				conn.commit()
 				conn.close()
 				#print(id)
