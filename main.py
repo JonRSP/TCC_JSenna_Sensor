@@ -13,9 +13,9 @@ f.close()
 # Define o tipo de sensor
 sensor = Adafruit_DHT.DHT11
 #sensor = Adafruit_DHT.DHT22
- 
+
 GPIO.setmode(GPIO.BOARD)
- 
+
 # Define a GPIO conectada ao pino de dados do sensor
 pino_sensor = 17
 conn = sqlite3.connect('sensor.db')
@@ -54,6 +54,6 @@ while(1):
 				#print(id)
 			except:
 				pass
-		time.sleep(5)
+		time.sleep(60)
 	except:
 		pass
