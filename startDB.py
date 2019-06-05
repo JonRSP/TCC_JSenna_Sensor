@@ -2,7 +2,7 @@
 import sqlite3
 
 def startDB():
-	conn = sqlite3.connect('sensor.db')
+	conn = sqlite3.connect('./data/sensor.db')
 
 	cursor = conn.cursor()
 
