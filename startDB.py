@@ -1,8 +1,8 @@
 #Utilizando banco de dados para armazenar uma informação simples como ID apenas para garantir as propriedades ACID
 import sqlite3
 
-def startDB():
-	conn = sqlite3.connect('./data/sensor.db')
+def startDB( arquivo ):
+	conn = sqlite3.connect(arquivo)
 
 	cursor = conn.cursor()
 

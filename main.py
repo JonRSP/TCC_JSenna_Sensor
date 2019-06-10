@@ -5,11 +5,13 @@ import requests
 import startDB
 import sqlite3
 
+arquivo = './data/sensor.db'
 try:
-	f = open('./data/sensor.db')
+	f = open(arquivo)
+	f.close()
 except FileNotFoundError:
-	startDB.startDB()
-f.close()
+	startDB.startDB(arquivo)
+
 # Define o tipo de sensor
 sensor = Adafruit_DHT.DHT11
 #sensor = Adafruit_DHT.DHT22
@@ -18,7 +20,7 @@ GPIO.setmode(GPIO.BOARD)
 
 # Define a GPIO conectada ao pino de dados do sensor
 pino_sensor = 17
-conn = sqlite3.connect('./data/sensor.db')
+conn = sqlite3.connect(arquivo)
 cursor = conn.cursor()
 cursor.execute('''SELECT senid from sensor;''')
 id = cursor.fetchone()
@@ -46,7 +48,7 @@ while(1):
 		while(1):
 			try:
 				id = int(r.text)
-				conn = sqlite3.connect('./data/sensor.db')
+				conn = sqlite3.connect(arquivo)
 				cursor = conn.cursor()
 				sqlCommand = 'UPDATE sensor SET senid = '+str(id)+ ' where senid=0;'
 				cursor.execute(sqlCommand)
